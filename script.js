@@ -30,12 +30,10 @@ const alphabet = [
   { name: "Z" },
 ];
 
-const letterCard = (letter) => {
-  return (
-    <div>
-      <p>{p.name}</p>
-    </div>
-  );
-};
+const letterCard = (item) => `<div class='cardWrapper'>
+<img src='assets/images/${item.name}.png' />
+    </div>`;
 
-root.innerHTML = alphabet.map((letter) => letter);
+const createCards = alphabet.map(letterCard);
+
+root.innerHTML = createCards.join("");

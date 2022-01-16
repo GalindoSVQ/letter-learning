@@ -6,10 +6,18 @@ html {
 body {
   padding: 0;
   margin: 0;
-  background: rgb(222, 237, 225);
-  background: radial-gradient(
-    circle,
-    rgba(222, 237, 225, 1) 0%,
-    rgba(255, 255, 255, 1) 78%
-  );
+}
+
+#root {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.cardWrapper {
+  width: calc(100vw / 9);
+}
+
+.cardWrapper img {
+  max-width: 100%;
+  height: auto;
 }
