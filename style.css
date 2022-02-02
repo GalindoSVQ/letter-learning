@@ -21,3 +21,15 @@ body {
   max-width: 100%;
   height: auto;
 }
+
+.searchContainer {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  padding: 12px 0;
+}
+
+.searchContainer > input {
+  padding: 7px 5px;
+  width: 15%;
+}

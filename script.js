@@ -1,4 +1,5 @@
 const root = document.getElementById("root");
+const searchBarElement = document.getElementById("searchBar");
 
 const alphabet = [
   { name: "A" },
@@ -30,7 +31,19 @@ const alphabet = [
   { name: "Z" },
 ];
 
+// SEARCH BAR
+let filterAlphabetList = [];
+const searchBar =
+  '<input type="text" id="searchLetterInput" name="searchLetterInput" oninput="value=value.toUpperCase()">';
+searchBarElement.innerHTML += searchBar;
+const input = document.getElementById("searchLetterInput");
+
+// LETTERS
 document.addEventListener("keydown", (e) => {
+  if (input === document.activeElement) {
+    return;
+  }
+
   const letter = alphabet.find((letter) => letter.name === e.key.toUpperCase());
 
   if (!letter) {
@@ -42,6 +55,20 @@ const letterCard = (item) => `<div class='cardWrapper'>
 <img src='assets/images/${item.name}.png' />
     </div>`;
 
-const createCards = alphabet.map(letterCard);
+const createCards = filterAlphabetList.length
+  ? alphabet
+      .filter((letter) => {
+        return filterAlphabetList.includes(letter.name);
+      })
+      .map(letterCard)
+  : alphabet.map((letter) => {
+      return letterCard(letter);
+    });
 
 root.innerHTML = createCards.join("");
+
+const handleChange = (event) => {
+  filterAlphabetList = event.target.value.split("");
+  root.innerHTML = createCards.join("");
+};
+input.onkeydown = handleChange;
