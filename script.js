@@ -30,6 +30,14 @@ const alphabet = [
   { name: "Z" },
 ];
 
+document.addEventListener("keydown", (e) => {
+  const letter = alphabet.find((letter) => letter.name === e.key.toUpperCase());
+
+  if (!letter) {
+    return;
+  }
+});
+
 const letterCard = (item) => `<div class='cardWrapper'>
 <img src='assets/images/${item.name}.png' />
     </div>`;
