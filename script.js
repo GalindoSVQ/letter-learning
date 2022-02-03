@@ -32,7 +32,7 @@ const alphabet = [
 ];
 
 // SEARCH BAR
-let filterAlphabetList = [];
+let filterAlphabetList = ["A", "G", "M"];
 const searchBar =
   '<input type="text" id="searchLetterInput" name="searchLetterInput" oninput="value=value.toUpperCase()">';
 searchBarElement.innerHTML += searchBar;
@@ -55,20 +55,13 @@ const letterCard = (item) => `<div class='cardWrapper'>
 <img src='assets/images/${item.name}.png' />
     </div>`;
 
-const createCards = filterAlphabetList.length
-  ? alphabet
-      .filter((letter) => {
-        return filterAlphabetList.includes(letter.name);
-      })
-      .map(letterCard)
-  : alphabet.map((letter) => {
-      return letterCard(letter);
-    });
+const filterLetters = (letter) => filterAlphabetList.includes(letter.name);
+
+const createCards = alphabet.filter(filterLetters).map(letterCard);
+
+const handleChange = (event) =>
+  (filterAlphabetList = event.target.value.split(""));
+
+input.onkeydown = handleChange;
 
 root.innerHTML = createCards.join("");
-
-const handleChange = (event) => {
-  filterAlphabetList = event.target.value.split("");
-  root.innerHTML = createCards.join("");
-};
-input.onkeydown = handleChange;
