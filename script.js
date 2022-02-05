@@ -38,6 +38,31 @@ const searchBar =
 searchBarElement.innerHTML += searchBar;
 const input = document.getElementById("searchLetterInput");
 
+input.addEventListener("keyup", (event) => {
+  filterAlphabetList = event.target.value.split("");
+
+  if (!!filterAlphabetList.length) {
+    root.classList.add("center");
+    root.style.flexFlow = "row nowrap";
+
+    root.innerHTML = filterAlphabetList
+      .map((letter) => {
+        const findLetter = alphabet.find(
+          (character) => character.name === letter
+        );
+
+        if (!!findLetter) {
+          return letterCard(findLetter);
+        }
+      })
+      .join("");
+  } else {
+    root.classList.remove("center");
+    root.style.flexFlow = "row wrap";
+    root.innerHTML = createCards.join("");
+  }
+});
+
 // LETTERS
 document.addEventListener("keydown", (e) => {
   if (input === document.activeElement) {
@@ -49,6 +74,8 @@ document.addEventListener("keydown", (e) => {
   if (!letter) {
     return;
   }
+
+  // ADD SOUND
 });
 
 const letterCard = (item) => `<div class='cardWrapper'>
@@ -56,17 +83,6 @@ const letterCard = (item) => `<div class='cardWrapper'>
     </div>`;
 
 const filterLetters = (letter) => filterAlphabetList.includes(letter.name);
-
 const createCards = alphabet.map(letterCard);
-
-input.addEventListener("keyup", (event) => {
-  filterAlphabetList = event.target.value.split("");
-
-  if (!!filterAlphabetList.length) {
-    root.innerHTML = alphabet.filter(filterLetters).map(letterCard).join("");
-  } else {
-    root.innerHTML = createCards.join("");
-  }
-});
 
 root.innerHTML = createCards.join("");
