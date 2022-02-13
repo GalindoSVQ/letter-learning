@@ -2,33 +2,33 @@ const root = document.getElementById("root");
 const searchBarElement = document.getElementById("searchBar");
 
 const alphabet = [
-  { name: "A" },
-  { name: "B" },
-  { name: "C" },
-  { name: "D" },
-  { name: "E" },
-  { name: "F" },
-  { name: "G" },
-  { name: "H" },
-  { name: "I" },
-  { name: "J" },
-  { name: "K" },
-  { name: "L" },
-  { name: "M" },
-  { name: "N" },
-  { name: "Ñ" },
-  { name: "O" },
-  { name: "P" },
-  { name: "Q" },
-  { name: "R" },
-  { name: "S" },
-  { name: "T" },
-  { name: "U" },
-  { name: "V" },
-  { name: "W" },
-  { name: "X" },
-  { name: "Y" },
-  { name: "Z" },
+  { name: "A", key='65' },
+  { name: "B", key='66' },
+  { name: "C", key='67' },
+  { name: "D", key='68' },
+  { name: "E", key='69' },
+  { name: "F", key='70' },
+  { name: "G", key='71' },
+  { name: "H", key='72' },
+  { name: "I", key='73' },
+  { name: "J", key='74' },
+  { name: "K", key='75' },
+  { name: "L", key='76' },
+  { name: "M", key='77' },
+  { name: "N", key='78' },
+  { name: "Ñ", key='192' },
+  { name: "O", key='79' },
+  { name: "P", key='80' },
+  { name: "Q", key='81' },
+  { name: "R", key='82' },
+  { name: "S", key='83' },
+  { name: "T", key='84' },
+  { name: "U", key='85' },
+  { name: "V", key='86' },
+  { name: "W", key='87' },
+  { name: "X", key='88' },
+  { name: "Y", key='89' },
+  { name: "Z", key='90' },
 ];
 
 // SEARCH BAR
@@ -79,7 +79,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 const letterCard = (item) => `<div class='cardWrapper'>
-<img src='assets/images/${item.name}.png' />
+<img src='assets/images/${item.name.toLowerCase()}.png' />
     </div>`;
 
 const filterLetters = (letter) => filterAlphabetList.includes(letter.name);
