@@ -63,7 +63,7 @@ input.addEventListener("keyup", (event) => {
   }
 });
 
-// LETTERS
+// KEY PRESS EVENTS
 document.addEventListener("keydown", (e) => {
   if (input === document.activeElement) {
     return;
@@ -75,10 +75,25 @@ document.addEventListener("keydown", (e) => {
     return;
   }
 
+  // HIDE LETTERS NO PRESEED
+  const lettersNoPresed = [];
+
+  alphabet.forEach((letter) => {
+    if (!(letter.name === e.key.toUpperCase())) {
+      lettersNoPresed.push(document.querySelector(`#${letter.name}`));
+    }
+  });
+
+  lettersNoPresed.forEach((letter) => letter.classList.add("hideCard"));
+
+  setTimeout(() => {
+    lettersNoPresed.forEach((letter) => letter.classList.remove("hideCard"));
+  }, 1500);
+
   // ADD SOUND
 });
 
-const letterCard = (item) => `<div class='cardWrapper'>
+const letterCard = (item) => `<div class='cardWrapper' id="${item.name}">
 <img src='assets/images/${item.name.toLowerCase()}.png' />
     </div>`;
 

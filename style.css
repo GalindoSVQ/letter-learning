@@ -21,6 +21,13 @@ body {
 
 .cardWrapper {
   width: calc(100vw / 8);
+  transition: opacity 0.3s;
+  opacity: 1;
+}
+
+.hideCard {
+  transition: opacity 0.3s;
+  opacity: 0.05;
 }
 
 .cardWrapper img {
