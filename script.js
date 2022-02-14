@@ -90,11 +90,17 @@ document.addEventListener("keydown", (e) => {
     lettersNoPresed.forEach((letter) => letter.classList.remove("hideCard"));
   }, 1500);
 
-  // ADD SOUND
+  // PLAY SOUND
+  const audio = document.querySelector(
+    `audio[data-key="${e.key.toLowerCase()}"]`
+  );
+
+  console.log(audio);
 });
 
 const letterCard = (item) => `<div class='cardWrapper' id="${item.name}">
 <img src='assets/images/${item.name.toLowerCase()}.png' />
+<audio src="assets/audio/${item.name.toLowerCase()}.mp3"></audio>
     </div>`;
 
 const filterLetters = (letter) => filterAlphabetList.includes(letter.name);
