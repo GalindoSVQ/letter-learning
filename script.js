@@ -77,30 +77,42 @@ document.addEventListener("keydown", (e) => {
 
   // HIDE LETTERS NO PRESEED
   const lettersNoPresed = [];
+  const accumulator = !!filterAlphabetList.length
+    ? filterAlphabetList
+    : alphabet;
 
-  alphabet.forEach((letter) => {
-    if (!(letter.name === e.key.toUpperCase())) {
-      lettersNoPresed.push(document.querySelector(`#${letter.name}`));
+  accumulator.forEach((letter) => {
+    if (!!letter.name) {
+      letter.name !== e.key.toUpperCase() &&
+        lettersNoPresed.push(document.querySelector(`#${letter.name}`));
+    } else {
+      letter !== e.key.toUpperCase() &&
+        lettersNoPresed.push(document.querySelector(`#${letter}`));
     }
   });
 
-  lettersNoPresed.forEach((letter) => letter.classList.add("hideCard"));
+  lettersNoPresed.forEach((letter) => {
+    letter.classList.add("hideCard");
+  });
 
   setTimeout(() => {
     lettersNoPresed.forEach((letter) => letter.classList.remove("hideCard"));
   }, 1500);
 
   // PLAY SOUND
-  const audio = document.querySelector(
-    `audio[data-key="${e.key.toLowerCase()}"]`
-  );
+  const divCard = document.getElementById(e.key.toUpperCase());
+  const audio = divCard.querySelector(`audio[data-key="${letter.key}"]`);
 
-  console.log(audio);
+  if (!audio) return;
+  audio.currentTime = 0;
+  audio.play();
 });
 
 const letterCard = (item) => `<div class='cardWrapper' id="${item.name}">
 <img src='assets/images/${item.name.toLowerCase()}.png' />
-<audio src="assets/audio/${item.name.toLowerCase()}.mp3"></audio>
+<audio data-key="${
+  item.key
+}" src="assets/audio/${item.name.toLowerCase()}.mp3"></audio> 
     </div>`;
 
 const filterLetters = (letter) => filterAlphabetList.includes(letter.name);
