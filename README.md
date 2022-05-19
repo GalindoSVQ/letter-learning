@@ -1,5 +1,8 @@
 # Letter Learning
 
+[Live Demo](https://letter-learning-galindosvq.netlify.app/)
+![Demo](https://raw.githubusercontent.com/galindosvq/letter-learning/main/assets/demo.gif)
+
 ##### Project made with love in which my children and nephews can learn how to spell words.
 
 #
